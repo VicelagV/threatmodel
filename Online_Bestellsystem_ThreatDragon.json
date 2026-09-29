@@ -1,0 +1,393 @@
+{
+  "version": "2.3.0",
+  "summary": {
+    "title": "Online-Bestellsystem – Threat Model",
+    "owner": "Luca Baumann",
+    "description": "Threat Model für eine Webanwendung für Online-Bestellungen mit Webserver, Applikationsserver, Datenbank und externem Zahlungsdienst.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Online-Bestellsystem",
+        "diagramType": "STRIDE",
+        "placeholder": "DFD und STRIDE-Analyse des Online-Bestellsystems",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.3.0",
+        "cells": [
+          {
+            "position": {"x": 330, "y": 80},
+            "size": {"width": 720, "height": 470},
+            "attrs": {
+              "body": {"stroke": "#777777", "strokeWidth": 2, "strokeDasharray": "8 5", "fill": "none"},
+              "text": {"text": "Unternehmensumgebung / interne Vertrauenszone"}
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 0,
+            "id": "ef294ef9-075e-4aa3-bcad-0a782db8de98",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Unternehmensumgebung / interne Vertrauenszone",
+              "description": "Grenze zwischen Internet bzw. externen Diensten und internen Systemkomponenten.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {"x": 60, "y": 220},
+            "size": {"width": 160, "height": 80},
+            "attrs": {"text": {"text": "Kunde / Webbrowser"}},
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 2,
+            "id": "0b6c8ac1-242a-4a1f-b2d7-c000dba5fd06",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Kunde / Webbrowser",
+              "description": "Externer Benutzer, der Bestellungen über die Webanwendung ausführt.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 1,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Spoofing eines Benutzerkontos",
+                  "type": "Spoofing",
+                  "description": "Ein Angreifer könnte sich als legitimer Kunde ausgeben und auf dessen Konto zugreifen.",
+                  "mitigation": "Starke Authentifizierung, sichere Sessions und optional MFA verwenden."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "position": {"x": 380, "y": 200},
+            "size": {"width": 150, "height": 100},
+            "attrs": {"text": {"text": "Webserver\n(Frontend)"}},
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "id": "8d71633e-4343-4306-89f1-101774229c4a",
+            "data": {
+              "type": "tm.Process",
+              "name": "Webserver (Frontend)",
+              "description": "Nimmt HTTPS-Anfragen des Kunden entgegen und leitet Anwendungsdaten weiter.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 2,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Manipulation von Anfragen",
+                  "type": "Tampering",
+                  "description": "Ein Angreifer könnte Bestell- oder Formulardaten manipulieren.",
+                  "mitigation": "TLS, Eingabevalidierung und serverseitige Plausibilitätsprüfungen einsetzen."
+                },
+                {
+                  "id": 3,
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "Denial of Service gegen Frontend",
+                  "type": "Denial of service",
+                  "description": "Viele Anfragen könnten den Webserver überlasten und Bestellungen verhindern.",
+                  "mitigation": "Rate Limiting, Monitoring und DDoS-Schutz einsetzen."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "position": {"x": 650, "y": 200},
+            "size": {"width": 150, "height": 100},
+            "attrs": {"text": {"text": "Applikationsserver\n(Business Logik)"}},
+            "visible": true,
+            "shape": "process",
+            "zIndex": 4,
+            "id": "e3ff3144-c703-4fc6-8162-a7b6c168407b",
+            "data": {
+              "type": "tm.Process",
+              "name": "Applikationsserver (Business Logik)",
+              "description": "Verarbeitet Bestellungen und kommuniziert mit Datenbank und Zahlungsdienst.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 4,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Elevation of Privilege",
+                  "type": "Elevation of privilege",
+                  "description": "Eine Schwachstelle könnte zur Rechteausweitung auf dem Applikationsserver führen.",
+                  "mitigation": "Least Privilege, sichere Konfiguration, Patch-Management und Rechtekontrollen einsetzen."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "position": {"x": 650, "y": 400},
+            "size": {"width": 170, "height": 90},
+            "attrs": {"text": {"text": "Datenbank\nBestellungen & Benutzer"}},
+            "visible": true,
+            "shape": "store",
+            "zIndex": 5,
+            "id": "27c5afbe-86b2-42c7-98e2-5249c387e720",
+            "data": {
+              "type": "tm.Store",
+              "name": "Datenbank (Bestellungen & Benutzerkonten)",
+              "description": "Speichert Benutzerkonten und Bestelldaten.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 5,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "SQL Injection / Datenmanipulation",
+                  "type": "Tampering",
+                  "description": "Manipulierte Eingaben könnten unsichere Datenbankabfragen beeinflussen.",
+                  "mitigation": "Prepared Statements, Input Validation und minimale DB-Rechte verwenden."
+                },
+                {
+                  "id": 6,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Unbefugter Zugriff auf Kundendaten",
+                  "type": "Information disclosure",
+                  "description": "Ein Angreifer könnte Bestell- und Kontodaten auslesen.",
+                  "mitigation": "Zugriffskontrollen, Netzwerksegmentierung und Verschlüsselung sensibler Daten einsetzen."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "position": {"x": 1110, "y": 210},
+            "size": {"width": 180, "height": 90},
+            "attrs": {"text": {"text": "Externer Zahlungsdienst"}},
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 6,
+            "id": "d26bfade-1817-49d4-b8ba-9d1095830f08",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Externer Zahlungsdienst",
+              "description": "Drittanbieter für Zahlungsabwicklung.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "zIndex": 10,
+            "id": "94435405-b352-4ed5-b23e-371d84049064",
+            "source": {"cell": "0b6c8ac1-242a-4a1f-b2d7-c000dba5fd06"},
+            "target": {"cell": "8d71633e-4343-4306-89f1-101774229c4a"},
+            "labels": [{"attrs": {"label": {"text": "HTTPS-Anfrage / Bestellung"}}, "position": 0.5}],
+            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS-Anfrage / Bestellung",
+              "description": "",
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 7,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Abfangen sensibler Daten",
+                  "type": "Information disclosure",
+                  "description": "Unverschlüsselte oder falsch konfigurierte Kommunikation könnte mitgelesen werden.",
+                  "mitigation": "TLS durchgehend erzwingen, sichere Cipher Suites und Zertifikatsprüfung verwenden."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "zIndex": 11,
+            "id": "5289ac81-e8b3-4afb-8e09-66382bdf114f",
+            "source": {"cell": "8d71633e-4343-4306-89f1-101774229c4a"},
+            "target": {"cell": "0b6c8ac1-242a-4a1f-b2d7-c000dba5fd06"},
+            "labels": [{"attrs": {"label": {"text": "HTTPS-Antwort / Bestellbestätigung"}}, "position": 0.5}],
+            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS-Antwort / Bestellbestätigung",
+              "description": "",
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "zIndex": 12,
+            "id": "35856e5b-ed3b-4b59-9eae-30062971734a",
+            "source": {"cell": "8d71633e-4343-4306-89f1-101774229c4a"},
+            "target": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
+            "labels": [{"attrs": {"label": {"text": "Anwendungsdaten"}}, "position": 0.5}],
+            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "data": {
+              "type": "tm.Flow",
+              "name": "Anwendungsdaten",
+              "description": "",
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 8,
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "Manipulation interner Requests",
+                  "type": "Tampering",
+                  "description": "Interne Requests könnten bei unzureichender Absicherung manipuliert werden.",
+                  "mitigation": "Authentisierte interne Kommunikation, TLS und serverseitige Validierung verwenden."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "zIndex": 13,
+            "id": "cea6ed1c-9f65-43b5-b3a0-5e62f4732aae",
+            "source": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
+            "target": {"cell": "27c5afbe-86b2-42c7-98e2-5249c387e720"},
+            "labels": [{"attrs": {"label": {"text": "Datenbankabfrage"}}, "position": 0.5}],
+            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "data": {
+              "type": "tm.Flow",
+              "name": "Datenbankabfrage",
+              "description": "",
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 9,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "SQL Injection",
+                  "type": "Tampering",
+                  "description": "Unsicher zusammengesetzte SQL-Abfragen könnten durch Benutzereingaben verändert werden.",
+                  "mitigation": "Prepared Statements und parametrisierte Queries einsetzen."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "zIndex": 14,
+            "id": "3c92759a-0554-4005-a069-dfe9a8bb0acd",
+            "source": {"cell": "27c5afbe-86b2-42c7-98e2-5249c387e720"},
+            "target": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
+            "labels": [{"attrs": {"label": {"text": "Ergebnisdaten"}}, "position": 0.5}],
+            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "data": {
+              "type": "tm.Flow",
+              "name": "Ergebnisdaten",
+              "description": "",
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "zIndex": 15,
+            "id": "62531ad6-6341-4c8f-8439-71aff6989cae",
+            "source": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
+            "target": {"cell": "d26bfade-1817-49d4-b8ba-9d1095830f08"},
+            "labels": [{"attrs": {"label": {"text": "Zahlungsanfrage (API)"}}, "position": 0.5}],
+            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "data": {
+              "type": "tm.Flow",
+              "name": "Zahlungsanfrage (API)",
+              "description": "",
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 10,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Manipulierte Zahlungsanfrage",
+                  "type": "Tampering",
+                  "description": "Zahlungsdaten oder Zielparameter könnten verändert werden.",
+                  "mitigation": "TLS, API-Authentifizierung, Request-Signaturen und serverseitige Validierung verwenden."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "zIndex": 16,
+            "id": "6fd820ea-69c8-4323-867d-f028d7bfcc7b",
+            "source": {"cell": "d26bfade-1817-49d4-b8ba-9d1095830f08"},
+            "target": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
+            "labels": [{"attrs": {"label": {"text": "Zahlungsbestätigung"}}, "position": 0.5}],
+            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "data": {
+              "type": "tm.Flow",
+              "name": "Zahlungsbestätigung",
+              "description": "",
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": 11,
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Gefälschte Zahlungsbestätigung",
+                  "type": "Spoofing",
+                  "description": "Eine gefälschte Antwort könnte als gültige Zahlungsbestätigung interpretiert werden.",
+                  "mitigation": "Signaturen/Webhook-Secrets prüfen und Status zusätzlich beim Zahlungsanbieter verifizieren."
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          }
+        ]
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 12
+  }
+}
