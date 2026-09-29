@@ -1,9 +1,9 @@
 {
   "version": "2.3.0",
   "summary": {
-    "title": "Online-Bestellsystem – Threat Model",
+    "title": "Online-Bestellsystem",
     "owner": "Luca Baumann",
-    "description": "Threat Model für eine Webanwendung für Online-Bestellungen mit Webserver, Applikationsserver, Datenbank und externem Zahlungsdienst.",
+    "description": "Threat Model für die ITSI-Aufgabe.",
     "id": 0
   },
   "detail": {
@@ -13,16 +13,29 @@
         "id": 0,
         "title": "Online-Bestellsystem",
         "diagramType": "STRIDE",
-        "placeholder": "DFD und STRIDE-Analyse des Online-Bestellsystems",
+        "placeholder": "Online-Bestellsystem",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.3.0",
         "cells": [
           {
-            "position": {"x": 330, "y": 80},
-            "size": {"width": 720, "height": 470},
+            "position": {
+              "x": 330,
+              "y": 80
+            },
+            "size": {
+              "width": 720,
+              "height": 470
+            },
             "attrs": {
-              "body": {"stroke": "#777777", "strokeWidth": 2, "strokeDasharray": "8 5", "fill": "none"},
-              "text": {"text": "Unternehmensumgebung / interne Vertrauenszone"}
+              "body": {
+                "stroke": "#777777",
+                "strokeWidth": 2,
+                "strokeDasharray": "8 5",
+                "fill": "none"
+              },
+              "text": {
+                "text": "Unternehmensumgebung / interne Vertrauenszone"
+              }
             },
             "visible": true,
             "shape": "trust-boundary-box",
@@ -39,9 +52,19 @@
             }
           },
           {
-            "position": {"x": 60, "y": 220},
-            "size": {"width": 160, "height": 80},
-            "attrs": {"text": {"text": "Kunde / Webbrowser"}},
+            "position": {
+              "x": 60,
+              "y": 220
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Kunde / Webbrowser"
+              }
+            },
             "visible": true,
             "shape": "actor",
             "zIndex": 2,
@@ -67,9 +90,19 @@
             }
           },
           {
-            "position": {"x": 380, "y": 200},
-            "size": {"width": 150, "height": 100},
-            "attrs": {"text": {"text": "Webserver\n(Frontend)"}},
+            "position": {
+              "x": 380,
+              "y": 200
+            },
+            "size": {
+              "width": 150,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Webserver\n(Frontend)"
+              }
+            },
             "visible": true,
             "shape": "process",
             "zIndex": 3,
@@ -104,9 +137,19 @@
             }
           },
           {
-            "position": {"x": 650, "y": 200},
-            "size": {"width": 150, "height": 100},
-            "attrs": {"text": {"text": "Applikationsserver\n(Business Logik)"}},
+            "position": {
+              "x": 650,
+              "y": 200
+            },
+            "size": {
+              "width": 150,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Applikationsserver\n(Business Logik)"
+              }
+            },
             "visible": true,
             "shape": "process",
             "zIndex": 4,
@@ -132,9 +175,19 @@
             }
           },
           {
-            "position": {"x": 650, "y": 400},
-            "size": {"width": 170, "height": 90},
-            "attrs": {"text": {"text": "Datenbank\nBestellungen & Benutzer"}},
+            "position": {
+              "x": 650,
+              "y": 400
+            },
+            "size": {
+              "width": 170,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Datenbank\nBestellungen & Benutzer"
+              }
+            },
             "visible": true,
             "shape": "store",
             "zIndex": 5,
@@ -169,9 +222,19 @@
             }
           },
           {
-            "position": {"x": 1110, "y": 210},
-            "size": {"width": 180, "height": 90},
-            "attrs": {"text": {"text": "Externer Zahlungsdienst"}},
+            "position": {
+              "x": 1110,
+              "y": 210
+            },
+            "size": {
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Externer Zahlungsdienst"
+              }
+            },
             "visible": true,
             "shape": "actor",
             "zIndex": 6,
@@ -190,10 +253,31 @@
             "shape": "flow",
             "zIndex": 10,
             "id": "94435405-b352-4ed5-b23e-371d84049064",
-            "source": {"cell": "0b6c8ac1-242a-4a1f-b2d7-c000dba5fd06"},
-            "target": {"cell": "8d71633e-4343-4306-89f1-101774229c4a"},
-            "labels": [{"attrs": {"label": {"text": "HTTPS-Anfrage / Bestellung"}}, "position": 0.5}],
-            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "source": {
+              "cell": "0b6c8ac1-242a-4a1f-b2d7-c000dba5fd06"
+            },
+            "target": {
+              "cell": "8d71633e-4343-4306-89f1-101774229c4a"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "HTTPS-Anfrage / Bestellung"
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "attrs": {
+              "line": {
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic",
+                  "size": 8
+                }
+              }
+            },
             "data": {
               "type": "tm.Flow",
               "name": "HTTPS-Anfrage / Bestellung",
@@ -221,10 +305,31 @@
             "shape": "flow",
             "zIndex": 11,
             "id": "5289ac81-e8b3-4afb-8e09-66382bdf114f",
-            "source": {"cell": "8d71633e-4343-4306-89f1-101774229c4a"},
-            "target": {"cell": "0b6c8ac1-242a-4a1f-b2d7-c000dba5fd06"},
-            "labels": [{"attrs": {"label": {"text": "HTTPS-Antwort / Bestellbestätigung"}}, "position": 0.5}],
-            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "source": {
+              "cell": "8d71633e-4343-4306-89f1-101774229c4a"
+            },
+            "target": {
+              "cell": "0b6c8ac1-242a-4a1f-b2d7-c000dba5fd06"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "HTTPS-Antwort / Bestellbestätigung"
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "attrs": {
+              "line": {
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic",
+                  "size": 8
+                }
+              }
+            },
             "data": {
               "type": "tm.Flow",
               "name": "HTTPS-Antwort / Bestellbestätigung",
@@ -242,10 +347,31 @@
             "shape": "flow",
             "zIndex": 12,
             "id": "35856e5b-ed3b-4b59-9eae-30062971734a",
-            "source": {"cell": "8d71633e-4343-4306-89f1-101774229c4a"},
-            "target": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
-            "labels": [{"attrs": {"label": {"text": "Anwendungsdaten"}}, "position": 0.5}],
-            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "source": {
+              "cell": "8d71633e-4343-4306-89f1-101774229c4a"
+            },
+            "target": {
+              "cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Anwendungsdaten"
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "attrs": {
+              "line": {
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic",
+                  "size": 8
+                }
+              }
+            },
             "data": {
               "type": "tm.Flow",
               "name": "Anwendungsdaten",
@@ -273,10 +399,31 @@
             "shape": "flow",
             "zIndex": 13,
             "id": "cea6ed1c-9f65-43b5-b3a0-5e62f4732aae",
-            "source": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
-            "target": {"cell": "27c5afbe-86b2-42c7-98e2-5249c387e720"},
-            "labels": [{"attrs": {"label": {"text": "Datenbankabfrage"}}, "position": 0.5}],
-            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "source": {
+              "cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"
+            },
+            "target": {
+              "cell": "27c5afbe-86b2-42c7-98e2-5249c387e720"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Datenbankabfrage"
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "attrs": {
+              "line": {
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic",
+                  "size": 8
+                }
+              }
+            },
             "data": {
               "type": "tm.Flow",
               "name": "Datenbankabfrage",
@@ -304,10 +451,31 @@
             "shape": "flow",
             "zIndex": 14,
             "id": "3c92759a-0554-4005-a069-dfe9a8bb0acd",
-            "source": {"cell": "27c5afbe-86b2-42c7-98e2-5249c387e720"},
-            "target": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
-            "labels": [{"attrs": {"label": {"text": "Ergebnisdaten"}}, "position": 0.5}],
-            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "source": {
+              "cell": "27c5afbe-86b2-42c7-98e2-5249c387e720"
+            },
+            "target": {
+              "cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Ergebnisdaten"
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "attrs": {
+              "line": {
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic",
+                  "size": 8
+                }
+              }
+            },
             "data": {
               "type": "tm.Flow",
               "name": "Ergebnisdaten",
@@ -325,10 +493,31 @@
             "shape": "flow",
             "zIndex": 15,
             "id": "62531ad6-6341-4c8f-8439-71aff6989cae",
-            "source": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
-            "target": {"cell": "d26bfade-1817-49d4-b8ba-9d1095830f08"},
-            "labels": [{"attrs": {"label": {"text": "Zahlungsanfrage (API)"}}, "position": 0.5}],
-            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "source": {
+              "cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"
+            },
+            "target": {
+              "cell": "d26bfade-1817-49d4-b8ba-9d1095830f08"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Zahlungsanfrage (API)"
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "attrs": {
+              "line": {
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic",
+                  "size": 8
+                }
+              }
+            },
             "data": {
               "type": "tm.Flow",
               "name": "Zahlungsanfrage (API)",
@@ -356,10 +545,31 @@
             "shape": "flow",
             "zIndex": 16,
             "id": "6fd820ea-69c8-4323-867d-f028d7bfcc7b",
-            "source": {"cell": "d26bfade-1817-49d4-b8ba-9d1095830f08"},
-            "target": {"cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"},
-            "labels": [{"attrs": {"label": {"text": "Zahlungsbestätigung"}}, "position": 0.5}],
-            "attrs": {"line": {"strokeWidth": 1.5, "targetMarker": {"name": "classic", "size": 8}}},
+            "source": {
+              "cell": "d26bfade-1817-49d4-b8ba-9d1095830f08"
+            },
+            "target": {
+              "cell": "e3ff3144-c703-4fc6-8162-a7b6c168407b"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Zahlungsbestätigung"
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "attrs": {
+              "line": {
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic",
+                  "size": 8
+                }
+              }
+            },
             "data": {
               "type": "tm.Flow",
               "name": "Zahlungsbestätigung",
